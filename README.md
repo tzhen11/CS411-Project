@@ -7,3 +7,4 @@ Maddie Zhang
 Yanru Chen
 
 Project Ideas:
+Best Vaction Spots -> Weather, Maps, Travel APIs 
