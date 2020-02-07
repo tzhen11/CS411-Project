@@ -5,3 +5,5 @@ Group Members:
 Terry Zhen
 Maddie Zhang
 Yanru Chen
+
+Project Ideas:
