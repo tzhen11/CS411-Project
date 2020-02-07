@@ -7,4 +7,4 @@ Maddie Zhang
 Yanru Chen
 
 Project Ideas:
-Best Vaction Spots -> Weather, Map, Travel APIs 
+Best Vaction Spots -> Weather,Travel APIs -> User gives selection of dates, app generates suggestions of where to travel.
