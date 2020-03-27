@@ -1,0 +1,126 @@
+<!--hellohhhhhh-->
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>-->
+</head>
+
+<body>
+
+    <h1>My First Heading</h1>
+
+    <p>My first paragraph.</p>
+
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+
+
+    <form class="example" action="action_page.php">
+        <input type="text" placeholder="Loaction" name="search" id="search_by_location">
+        <input type="text" placeholder="Currency" name="search" id="search_by_currency">
+        <button type="button" onclick="getInputValue();" id="myBtn">Submit</button>
+        <!--<input type="button" value="hide" onclick="document.getElementById('layer').style.vi sibility='hidden';"/>-->
+    </form>
+    <p id="output_location0"></p>
+    <p id="output_location1"></p>
+    <p id="output_location2"></p>
+
+    <script>
+        var inputLocation;
+        var inputCurrency;
+        function getInputValue() {
+            // Selecting the input element and get its value 
+            inputLocation = document.getElementById("search_by_location").value;
+            inputCurrency = document.getElementById("search_by_currency").value;
+            //console.log(inputLocation);
+            getfrom_api();
+        }
+
+        function write_html(currency, query) {
+            var result = "https://tripadvisor1.p.rapidapi.com/locations/search?";
+            //result += "currency=" + currency;
+            result += "query=" + query;
+            console.log("result = ", result);
+            return result;
+        }
+
+        var inputLocation;
+        var inputCurrency;
+        function getInputValue() {
+            // Selecting the input element and get its value 
+            inputLocation = document.getElementById("search_by_location").value;
+            inputCurrency = document.getElementById("search_by_currency").value;
+            //console.log(inputLocation);
+            getfrom_api();
+        }
+
+        function write_html(currency, query) {
+            var result = "https://tripadvisor1.p.rapidapi.com/locations/search?";
+            //result += "currency=" + currency;
+            result += "query=" + query;
+            console.log("result = ", result);
+            return result;
+        }
+
+        var inputLocation;
+        var inputCurrency;
+        function getInputValue() {
+            // Selecting the input element and get its value 
+            inputLocation = document.getElementById("search_by_location").value;
+            inputCurrency = document.getElementById("search_by_currency").value;
+            //console.log(inputLocation);
+            getfrom_api();
+        }
+
+        function write_html(currency, query) {
+            var result = "https://tripadvisor1.p.rapidapi.com/locations/search?";
+            //result += "currency=" + currency;
+            result += "query=" + query;
+            console.log("result = ", result);
+            return result;
+        }
+
+        function getfrom_api() {
+            var myHeaders = new Headers();
+            myHeaders.append("x-rapidapi-host", "tripadvisor1.p.rapidapi.com");
+            myHeaders.append("x-rapidapi-key", "21170f9628msh0fc013c94ef9761p1af8d6jsn4a0fe78fe048");
+
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(write_html(inputCurrency,inputLocation), requestOptions)
+                .then(response => response.text())
+                .then(result => {console.log(result)
+                    data = JSON.parse(result);
+                    display_data = [1,2,3];
+                    for (i=0; i<3; i++) {
+                        display_name = data.data[i].result_object.name;
+                        console.log("display_name = ", display_name);
+                        id = "output_location" + String(i);
+                        console.log("id = ", id)
+                        writeResponse(String(display_name),id);
+                    }
+                })
+                .catch(error => console.log('error', error));
+        }
+
+        //console.log("here");
+        //document.getElementById("output_location").innerHTML = response;
+
+        function writeResponse(response,id) {
+            document.getElementById(id).innerHTML = response;
+        }
+
+    </script>
+
+</body>
+
+</html>
