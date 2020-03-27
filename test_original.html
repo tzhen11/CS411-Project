@@ -49,42 +49,6 @@
             return result;
         }
 
-        var inputLocation;
-        var inputCurrency;
-        function getInputValue() {
-            // Selecting the input element and get its value 
-            inputLocation = document.getElementById("search_by_location").value;
-            inputCurrency = document.getElementById("search_by_currency").value;
-            //console.log(inputLocation);
-            getfrom_api();
-        }
-
-        function write_html(currency, query) {
-            var result = "https://tripadvisor1.p.rapidapi.com/locations/search?";
-            //result += "currency=" + currency;
-            result += "query=" + query;
-            console.log("result = ", result);
-            return result;
-        }
-
-        var inputLocation;
-        var inputCurrency;
-        function getInputValue() {
-            // Selecting the input element and get its value 
-            inputLocation = document.getElementById("search_by_location").value;
-            inputCurrency = document.getElementById("search_by_currency").value;
-            //console.log(inputLocation);
-            getfrom_api();
-        }
-
-        function write_html(currency, query) {
-            var result = "https://tripadvisor1.p.rapidapi.com/locations/search?";
-            //result += "currency=" + currency;
-            result += "query=" + query;
-            console.log("result = ", result);
-            return result;
-        }
-
         function getfrom_api() {
             var myHeaders = new Headers();
             myHeaders.append("x-rapidapi-host", "tripadvisor1.p.rapidapi.com");
