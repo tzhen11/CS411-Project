@@ -1,0 +1,57 @@
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    height: auto;
+}
+
+/*
+    https://www.w3schools.com/howto/howto_css_cards.asp
+    https://www.w3schools.com/cssref/pr_background-image.asp
+
+*/
+
+.card {
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 203px;
+    transition: 0.3s;
+    background-image: url('back_wea.png');
+    background-position: center; /* Center the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    margin: 5px;
+    text-align: center;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.scrolling-wrapper {
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* design for each card */
+#date {
+    width: auto;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.466);
+}
+
+.temp {
+    width: auto;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.466);
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.other_info {
+    width: auto;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.411);
+}
+

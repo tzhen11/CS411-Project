@@ -1,0 +1,489 @@
+/*mobile version*/
+
+h2 {
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 450px) {
+  .form_input {
+    box-shadow: inset -3px -3px 10px rgb(188, 231, 231);
+    background-color: #bbb;
+    /* Fill color */
+    color: white;
+    /* Text color */
+    border-radius: 15px;
+    /* Rounded button edges */
+    font-style: italic;
+    /* Italicize text */
+    margin: 1%;
+    padding: 2%;
+    /* Distance between text and border */
+    align-self: center;
+  }
+  .form_input input {
+    width: 95%;
+  }
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .topnav {
+    display: none;
+    visibility: hidden;
+    overflow: scroll;
+    background-color: #333;
+  }
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .topnav a.active {
+    background-color: rgb(180, 130, 130);
+    color: white;
+  }
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  #login {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(184, 176, 176);
+    color: black;
+  }
+  /* slide show css */
+  z * {
+    box-sizing: border-box
+  }
+  /* Slideshow container */
+  .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: black;
+    font-weight: bold;
+    font-size: 40px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    opacity: 50%;
+  }
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  /* Caption text */
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  @-webkit-keyframes fade {
+    from {
+      opacity: .4
+    }
+    to {
+      opacity: 1
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: .4
+    }
+    to {
+      opacity: 1
+    }
+  }
+  #desktop_hide {
+    background-color: rgba(211, 211, 211, 0.212);
+  }
+  footer {
+    background-color: rgb(180, 130, 130);
+    margin-top: 20px;
+    padding: 3%;
+  }
+  .col_footer h1 {
+    font-size: 20px;
+  }
+  .col_footer li {
+    list-style-type: none;
+    padding: 2px;
+  }
+  .col_footer h1 {
+    align-self: center;
+  }
+  .col_footer ul {
+    -webkit-padding-start: 0;
+    padding: 0;
+  }
+  .col_footer a {
+    color: brown;
+  }
+  .city_display {
+    background-color: rgba(211, 211, 211, 0.397);
+    border: black;
+    padding: 3%;
+    height: auto;
+    margin: 5%;
+  }
+  .city_display img {
+    width: 230px;
+    height: 160px;
+  }
+}
+
+/* Use a media query to add a break point at 600px: */
+
+@media screen and (min-width: 450px) {
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .form_input {
+    box-shadow: inset -3px -3px 10px rgb(188, 231, 231);
+    background-color: #bbb;
+    /* Fill color */
+    color: white;
+    /* Text color */
+    border-radius: 15px;
+    /* Rounded button edges */
+    font-style: italic;
+    /* Italicize text */
+    margin: 1%;
+    padding: 2%;
+    /* Distance between text and border */
+    align-self: center;
+    display: flex;
+  }
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .topnav a.active {
+    background-color: rgb(180, 130, 130);
+    color: white;
+  }
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  #login {
+    float: right;
+    background-color: rgb(184, 176, 176);
+    color: black;
+  }
+  /* slide show css */
+  z * {
+    box-sizing: border-box
+  }
+  /* Slideshow container */
+  .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: black;
+    font-weight: bold;
+    font-size: 40px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    opacity: 50%;
+  }
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  /* Caption text */
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  #desktop_hide {
+    display: none;
+    visibility: hidden;
+  }
+  @-webkit-keyframes fade {
+    from {
+      opacity: .4
+    }
+    to {
+      opacity: 1
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: .4
+    }
+    to {
+      opacity: 1
+    }
+  }
+  footer {
+    width: 100%;
+    height: auto;
+    background-color: rgb(180, 130, 130);
+    justify-content: space-evenly;
+    margin-top: 20px;
+  }
+  .col_footer li {
+    list-style-type: none;
+    padding: 2px;
+  }
+  .col_footer h1 {
+    align-self: center;
+  }
+  .col_footer ul {
+    -webkit-padding-start: 0;
+    padding: 0;
+    text-align: center;
+  }
+  .contain {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .col_footer a {
+    color: brown;
+  }
+  .city_display {
+    background-color: rgba(211, 211, 211, 0.397);
+    flex-wrap: wrap;
+    border: black;
+    padding: 3%;
+    height: auto;
+    margin: 5%;
+    display: flex;
+  }
+  .city_display #left {
+    float: left;
+    height: auto;
+    width: 40%;
+  }
+  .city_display #right {
+    float: right;
+    height: auto;
+    width: 60%;
+  }
+  .city_display img {
+    width: 430px;
+    height: 360px;
+  }
+}
