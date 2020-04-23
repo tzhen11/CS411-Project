@@ -1,1 +1,18 @@
 
+Proto 2 is here!!! --Yanru
+
+Finished:
+-- the construction of http://cs-people.bu.edu/yanruc/cs411/search_flights
+   - 2 forms come with this website, but with only slight difference: the airport and flights
+   - can search airports, hotels, restaurants by typing into the form
+   - Yes, the third option is a joke
+-- use hardcoded images on the index page rather than wasting API calls
+-- added link to navigation bar and API used
+-- redesign of navigation bar content
+
+TODO:
+--create a demo (probably video?) for using the website
+--visa availability website construction
+--about website construction ?? Or deletion
+--figure out recommendation algorithm would be possible or not
+--figure out what to do with 505
