@@ -1,0 +1,281 @@
+<!--TODO
+-- add visa information
+-- add 
+-->
+
+<!--
+    finished: 
+    -- remove id tag when resubmit
+    -- add future 7 days weather information
+-->
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="styleInfiniteScroll.css">
+    <!-- import handlebar -->
+    <script src="handlebars-v4.7.6.js"></script>
+
+    <!-- load jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <!-- navegation bar from https://www.w3schools.com/howto/howto_js_topnav.asp -->
+    <div class="topnav">
+        <a class="active" href="http://cs-people.bu.edu/yanruc/cs411/index">Home</a>
+        <a href="#news">About</a>
+        <div class="dropdown">
+            <button class="dropbtn">> More Search
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a>
+                <a href="#">Search for visa avalibility</a>
+            </div>
+        </div>
+        <a href="#about">Help</a>
+        <a href="" id="login">Log in</a>
+    </div>
+
+    <!-- Sidebar https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav -->
+    <div id="desktop_hide">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">About</a>
+            <a href="#">> More Search Options</a>
+            <nav>
+                <ul>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a></li>
+                </ul>
+            </nav>
+            <a href="#">Help</a>
+            <a href="#">Log in</a>
+        </div>
+
+        <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+
+    <!-- create a form to type in -->
+    <div class="form_input">
+        <form class="example" action="action_page.php">
+            <input type="text" placeholder="Loaction" name="search" id="search_by_location">
+            <input type="text" placeholder="Currency" name="search" id="search_by_currency">
+            <label for="unit">Choose a unit:</label>
+            <select id="search_by_unit" name="">
+                <option value="unit_km">km</option>
+                <option value="unit_mi">mi</option>
+            </select>
+            <button type="button" onclick="getInputValue();" id="myBtn">Submit</button>
+            <!--<input type="button" value="hide" onclick="document.getElementById('layer').style.vi sibility='hidden';"/>-->
+        </form>
+    </div>
+
+    <!-- this is the template for showing places -->
+    <div class="scrolling-wrapper">
+        <script id="handlebars-demo-weather" type="text/x-handlebars-template">
+            <div class="card">
+                <div id="date">
+                    <p>{{date}}</p>
+                </div>
+                <div class="temp">
+                    <div id="left">L:{{city_low_temp}}°C</div>
+                    <div id="right">H:{{city_high_temp}}°C</div>
+                </div>
+
+                <div class="other_info">
+                    <p>wind: {{city_wind_speed}}mph E</p>
+                    <p>clouds: {{city_clouds}} %</p>
+                    <p>pressure: {{city_pressure}} pa</p>
+                    <p>ozone: {{city_ozone_lvl}}</p>
+                </div>
+            </div>
+        </script>
+    </div>
+
+    <script id="handlebars-demo" type="text/x-handlebars-template">
+        <div class="city_display" id="ref_rev">
+            <div id="left">
+                <img src="{{picture_name}}" caption="{{photo_caption}}">
+            </div>
+            <div id="right">
+                <h1>{{city_name}}</h1>
+                <p>{{location_id}}</p>
+                <p>{{location_address}}</p>
+                <p>{{place_description}}</p>
+            </div>
+        </div>
+     </script>
+
+    <script>
+        var inputLocation;
+        var inputCurrency;
+        var inputUnit;
+        function getInputValue() {
+            removeElement();
+            // Selecting the input element and get its value 
+            inputLocation = document.getElementById("search_by_location").value;
+            inputCurrency = document.getElementById("search_by_currency").value;
+            inputUnit = document.getElementById("search_by_unit").value;
+            getfrom_api();
+        }
+
+        //this function remove div element when client resubmit
+        function removeElement() {
+            //clear all div written with travel advisor api
+            while ($('#ref_rev').length > 0) {
+                $("#ref_rev").remove();
+            }
+
+            //clear all div written with weather api
+            while ($('.card').length > 0) {
+                $(".card").remove();
+            }
+        }
+
+        function write_html(currency, query, unit) {
+            var result = "https://tripadvisor1.p.rapidapi.com/locations/search?";
+            result += "limit=" + "10" + "&";
+            result += "currency=" + currency + "&";
+            result += "units=" + unit.slice(5, 7) + "&";
+            result += "query=" + query;
+            console.log("result = ", result.replace(/ /g, "%20"));
+            return result;
+        }
+
+        function getfrom_api() {
+            var myHeaders = new Headers();
+            myHeaders.append("x-rapidapi-host", "tripadvisor1.p.rapidapi.com");
+            myHeaders.append("x-rapidapi-key", "29f17896c6msh2d2a40adb28ec38p1d53aejsn78791fc96467");
+
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(write_html(inputCurrency, inputLocation, inputUnit), requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    data = JSON.parse(result);
+
+                    var result = [];
+
+                    display_name = data.data[0].result_object.name;
+                    console.log(display_name);
+                    getWeather(display_name);
+
+                    for (i = 0; i < 10; i++) {
+                        //city_name
+                        display_name = data.data[i].result_object.name;
+
+                        //location_id
+                        locationid = data.data[i].result_object.location_id;
+                        locationid = String(locationid);
+
+                        //place_description
+                        place_description = data.data[i].result_object.geo_description;
+
+                        //images
+                        city_img = data.data[i].result_object.photo.images.medium.url;
+                        city_img = String(city_img);
+
+                        //get address
+                        //console.log(data.data[i].result_object)
+                        location_address = data.data[i].result_object.address;
+
+                        photo_cap = data.data[i].result_object.photo.images.caption;
+
+                        //writeResponse(String(display_name), id);
+
+                        //return format: [picture_url_address,city_name,location_id,place_description]
+                        writeResponse(city_img, display_name, locationid, place_description, location_address, photo_cap);
+                    }
+                })
+                .catch(error => console.log('error', error));
+        }
+
+        //write response to handlebar
+        function writeResponse(city_img, display_name, locationid, place_description, location_address, photo_cap) {
+            var template = $('#handlebars-demo').html();
+            var templateScript = Handlebars.compile(template);
+            var context = { city_name: display_name, location_id: locationid, place_description: place_description, picture_name: city_img, location_address: location_address, photo_caption: photo_cap }
+            var html = templateScript(context);
+            $(document.body).append(html);
+        }
+
+        function getWeather(city_name) {
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+
+            fetch(write_html2(city_name), requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    //console.log(result);
+                    displayWeather(result);
+                })
+                .catch(error => console.log('error', error));
+        }
+
+        function displayWeather(result) {
+            //get future 7 days of weather info
+            //console.log("result = ", result.data[0].high_temp)
+            for (var i = 0; i < 7; i++) {
+                var date = result.data[i].valid_date;
+                var city_high_temp = result.data[i].high_temp;
+                var city_wind_speed = result.data[i].wind_spd;
+                var city_low_temp = result.data[i].low_temp;
+                var city_clouds = result.data[i].clouds;
+                var city_pressure = result.data[i].pres;
+                var city_ozone_lvl = result.data[i].ozone;
+                //console.log(date, city_high_temp, city_wind_speed);
+                //then display them
+                var template = $('#handlebars-demo-weather').html();
+                var templateScript = Handlebars.compile(template);
+                var context = { date: date, city_low_temp: city_low_temp, city_high_temp: city_high_temp, city_wind_speed: city_wind_speed, city_clouds: city_clouds, city_pressure: city_pressure, city_ozone_lvl: city_ozone_lvl }
+                var html = templateScript(context);
+                $(".scrolling-wrapper").append(html);
+            }
+        }
+
+        function write_html2(city) {
+            var result = "https://api.weatherbit.io/v2.0/forecast/daily?";
+            result += "city=" + String(city) + "&";
+            result += "key=" + "dac837896776462f8edf99044b935540";
+            //console.log("result = ", result);
+            return result;
+        }
+
+    </script>
+</body>
+
+
+</html>
