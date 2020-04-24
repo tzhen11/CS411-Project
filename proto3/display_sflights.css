@@ -1,0 +1,67 @@
+/*
+    https://www.w3schools.com/howto/howto_css_cards.asp
+    https://www.w3schools.com/cssref/pr_background-image.asp
+
+*/
+
+.resp_class {
+    height: auto;
+    width: 100%;
+    margin: 2%;
+}
+
+.col_f {
+    background-color: beige;
+    border: 2px solid gray;
+    height: auto;
+    width: 45%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.airport {
+    display: inline-block;
+    width: auto;
+    transition: 0.3s;
+    margin: 5px;
+    padding:2%;
+}
+
+.middle_hotel {
+    width: 99%;
+}
+
+.hotel {
+    display: inline-block;
+    width: auto;
+    transition: 0.3s;
+    margin: 5px;
+    padding-right: 10px;
+    padding:2%;
+}
+
+.right_rest {
+    width: 99%;
+}
+
+.rest{
+    display: inline-block;
+    width: auto;
+    transition: 0.3s;
+    margin: 5px;
+    padding-right: 10px;
+    vertical-align: top;
+    padding:2%;
+}
+
+.rest p {
+    word-wrap: break-word;
+}
+
+#rest_desp{
+    width:500px;
+    height: auto;
+    white-space: break-spaces;
+}

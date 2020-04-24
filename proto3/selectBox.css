@@ -1,0 +1,91 @@
+/*submit button styling, this styling is from https://www.formstack.com/blog/2010/customize-form-buttons-with-css*/
+
+#fsSubmitButton {
+    border-top: 2px solid #a3ceda;
+    border-left: 2px solid #a3ceda;
+    border-right: 2px solid #4f6267;
+    border-bottom: 2px solid #4f6267;
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    background-color: #c4f1fe;
+    font-weight: bold;
+    color: #2d525d;
+    margin: 5px;
+}
+
+/* Reset Select */
+
+#slct {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+}
+
+/* Remove IE arrow */
+
+.select_top::-ms-expand {
+    display: none;
+}
+
+/* Custom Select */
+
+.select_top {
+    position: relative;
+    display: flex;
+    width: 33%;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+    margin-left: 20px;
+}
+
+#slct {
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Arrow */
+
+.select_top::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #34495e;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}
+
+/* Transition */
+
+.select_top:hover::after {
+    color: #f39c12;
+}
+
+.op1 {
+    border-left: 6px solid rgb(204, 96, 96);
+    background-color: rgba(209, 146, 146, 0.39);
+    padding:1%;
+    margin: 1%;
+}
+
+.op2 {
+    border-left: 6px solid rgb(204, 96, 96);
+    background-color: rgba(209, 146, 146, 0.39);
+    padding: 1%;
+    margin: 1%;
+}
