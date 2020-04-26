@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 6px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="display_sflights.css">
+    <link rel="stylesheet" type="text/css" href="selectBox.css">
+    <!-- import handlebar -->
+    <script src="handlebars-v4.7.6.js"></script>
+
+    <!-- load jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+ <!-- navegation bar from https://www.w3schools.com/howto/howto_js_topnav.asp -->
+    <div class="topnav">
+        <a class="active" href="index2.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="dropdown">
+            <button class="dropbtn">> More Search
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a>
+                <a href="#">Search for visa avalibility</a>
+            </div>
+        </div>
+        <a href="#about">Help</a>
+        <a href="index.html" id="login">Log out</a>
+    </div>
+
+    <!-- Sidebar https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav -->
+    <div id="desktop_hide">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">About</a>
+            <a href="#">> More Search Options</a>
+            <nav>
+                <ul>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a></li>
+                </ul>
+            </nav>
+            <a href="#">Help</a>
+            <a href="#">Log in</a>
+        </div>
+
+        <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+    </div>
+<div class="container">
+  <form action="contactus.php" , method="POST">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Your Email..">
+
+    <label for="subject">Comment</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+
+</html>

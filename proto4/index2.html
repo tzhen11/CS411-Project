@@ -1,0 +1,215 @@
+<!--hellohhhhhh-->
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!--<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>-->
+</head>
+
+<body>
+
+    <!-- navegation bar from https://www.w3schools.com/howto/howto_js_topnav.asp -->
+    <div class="topnav">
+        <a class="active" href="index2.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="dropdown">
+            <button class="dropbtn">> More Search
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a>
+                <a href="#">Search for visa avalibility</a>
+            </div>
+        </div>
+        <a href="about.html">Help</a>
+        <a href="index.html" id="login">Log Out</a>
+    </div>
+
+    <!-- Sidebar https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav -->
+    <div id="desktop_hide">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	    <a class="active" href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">> More Search Options</a>
+            <nav>
+                <ul>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a></li>
+                </ul>
+            </nav>
+            <a href="#">Help</a>
+            <a href="#">Log in</a>
+        </div>
+
+        <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+    <div>
+        <h2>- check these places -</h2>
+    </div>
+
+    <!-- display top places https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow -->
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 6</div>
+            <img src="pic_resources/4.jpg" id="p1" style="width:100%">
+            <div class="text" id="caption1">Precipitous Pillars, China</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 6</div>
+            <img src="pic_resources/5.jpg" id="p2" style="width:100%">
+            <div class="text" id="caption2">Ural Mountains, Russia</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 6</div>
+            <img src="pic_resources/8.jpg" id="p3" style="width:100%">
+            <div class="text" id="caption3">Cabo San Lucas Arch, Mexico</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 6</div>
+            <img src="pic_resources/1.jpg" id="p4" style="width:100%">
+            <div class="text" id="caption4">Belgrade, Serbia</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">5 / 6</div>
+            <img src="pic_resources/2.jpg" id="p5" style="width:100%">
+            <div class="text" id="caption5">Phandar Valley, Ghizer, Pakistan</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">6 / 6</div>
+            <img src="pic_resources/3.jpg" id="p6" style="width:100%">
+            <div class="text" id="caption6">Govi Desert, Mongolia</div>
+        </div>
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+    </div>
+
+    <script>
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+    </script>
+
+    <footer>
+        <div class="contain">
+            <div class="col_footer">
+                <h1>Explore</h1>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="mission.html">Mission</a></li>
+                    <li><a href="social.html">Social</a></li>
+                    <li><a href="contactus.html">Get in touch</a></li>
+                </ul>
+            </div>
+            <div class="col_footer">
+                <h1>More searches</h1>
+                <ul>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a></li>
+                </ul>
+            </div>
+            <div class="col_footer">
+                <h1>Thanks to:</h1>
+                <ul>
+                    <li><a href="https://developer-tripadvisor.com/content-api/">Trip Advisor API</a></li>
+                    <li><a href="https://www.partners.skyscanner.net/affiliates/travel-apis">Skyscanner API</a></li>
+                    <li><a href="https://www.rainviewer.com/api.html">Rainviewer API</a></li>
+                    <li>api4</li>
+                    <li>api5</li>
+                </ul>
+            </div>
+            <div class="col_footer">
+                <h1>Support</h1>
+                <ul>
+                    <li><a href="contactus.html">Contact us</a></li>
+                    <a href="url">Whitepage</a>
+                </ul>
+            </div>
+            <div class="col_footer">
+                <h1>Feedback</h1>
+                <ul>
+                    <li><a href="suggest.html">Leave A Sugguestion</a></li>
+                    <li><a href="reportbug.html">Report A Bug</a></li>
+                    <li><a href="compliment.html">Leave A Compliment</a></li>
+                    <li><a href="complaint.html">Leave A Complaint</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

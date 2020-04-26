@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        form{text-align: center;
+            font-size: 30px;}
+        input{width: 250px;
+            height: 40px;
+            font-size: 30px;}
+        div.login{padding-top:110px;
+            text-align:center;
+            font-size:50px;}
+        div.signup{text-align:center;}
+
+    </style>
+</head>
+
+<body>
+    <div class="login">
+        Please enter credentials!
+    </div>
+    <form action="login.php" method="POST">
+        Username:<input type="text" name="username" placeholder="Enter here"><br><br>
+        Password:<input type="password" name="password" placeholder="Enter here"><br><br>
+
+        <input type="submit" name="submit" value="Sumbit">
+    </form>
+    <div class="signup">
+        Don't Have An Account? <a class="active" href="signup.html">Sign up here!</a>
+    </div>
+</body>
+
+</html>
+
+<!--Change password type to password/hash-->

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="display_sflights.css">
+    <link rel="stylesheet" type="text/css" href="selectBox.css">
+    <!-- import handlebar -->
+    <script src="handlebars-v4.7.6.js"></script>
+
+    <!-- load jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- navegation bar from https://www.w3schools.com/howto/howto_js_topnav.asp -->
+    <div class="topnav">
+        <a class="active" href="http://cs-people.bu.edu/yanruc/cs411/index">Home</a>
+        <a href="#news">About</a>
+        <div class="dropdown">
+            <button class="dropbtn">> More Search
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a>
+                <a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a>
+                <a href="#">Search for visa avalibility</a>
+            </div>
+        </div>
+        <a href="#about">Help</a>
+        <a href="" id="login">Log in</a>
+    </div>
+
+    <!-- Sidebar https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav -->
+    <div id="desktop_hide">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">About</a>
+            <a href="#">> More Search Options</a>
+            <nav>
+                <ul>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_by_city">Search by cities</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search by date</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search flights</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search hotels</a></li>
+                    <li><a href="http://cs-people.bu.edu/yanruc/cs411/search_flights">Search restaurant</a></li>
+                </ul>
+            </nav>
+            <a href="#">Help</a>
+            <a href="#">Log in</a>
+        </div>
+
+        <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+    <h2>Search flights and hotels: </h2>
+
+    <div class="select_top">
+        <select name="slct" id="slct">
+            <option selected disabled>Show me:</option>
+            <option value="one_city_flight">airports & hotels & restaurants</option>
+            <option value="two_city_flight">flights (2 cities) & hotels & restaurants</option>
+            <option value="third_option">what else do you expect?! (the nothingness option)</option>
+        </select>
+    </div>
+
+    <div id="option1">
+        <!-- create a form to type in -->
+        <div class="form_input">
+            <form class="example" action="action_page.php">
+                <div class="op1" id="op1_airport">
+                    <h3>input for airport</h3>
+                    <input type="text" placeholder="City A" name="search" id="search_by_location1">
+                </div>
+
+                <div class="op1" id="op1_hotel">
+                    <h3>input for hotel</h3>
+                    <input type="text" placeholder="# of person for hotel" name="search" id="hotel_adults">
+                    <input type="text" placeholder="# of hotel rooms needed" name="search" id="hotel_rooms">
+                    <input type="text" placeholder="minimum price for hotel" name="search" id="hotel_price_min">
+                    <input type="text" placeholder="maximum price for hotel" name="search" id="hotel_price_max">
+                    <input type="text" placeholder="currency (ex:USD)" name="search" id="hotel_currency">
+                    <input type="text" placeholder="number of nights to live" name="search" id="hotel_nights">
+                    <p>check in date:<input type="date" id="hotel_days" name="birthday"></p>
+                </div>
+
+                <div class="op1" id="op1_rest">
+                    <h3>input for restaurants</h3>
+                    <p>restaurants rating:
+                        <select id="rest_rating">
+                            <option value="3">3 </option>
+                            <option value="4">4 </option>
+                            <option value="5">5 </option>
+                        </select>
+                    </p>
+                </div>
+
+                <button type="button" onclick="option1_anchor();" id="fsSubmitButton">Submit</button>
+                <!--<input type="button" value="hide" onclick="document.getElementById('layer').style.vi sibility='hidden';"/>-->
+            </form>
+        </div>
+    </div>
+
+    <div id="option2">
+        <div class="form_input">
+            <form class="example" action="action_page.php">
+                <div class="op2" id="op2_airport">
+                    <h3>input for airport</h3>
+                    <input type="text" placeholder="country (ex: US)" name="search" id="search_by_location2">
+                    <input type="text" placeholder="city (ex: boston)" name="search" id="city_input2">
+                    <input type="text" placeholder="originplace (ex:SFO-sky) " name="search" id="origin_place">
+                    <input type="text" placeholder="destinationplace (ex:ORD-sky)" name="search" id="destination_place">
+                    <p>check in date:<input type="date" id="flight_date" name=""></p>
+                </div>
+
+                <div class="op1" id="op1_hotel">
+                    <h3>input for hotel</h3>
+                    <input type="text" placeholder="# of person for hotel" name="search" id="hotel_adults2">
+                    <input type="text" placeholder="# of hotel rooms needed" name="search" id="hotel_rooms2">
+                    <input type="text" placeholder="minimum price for hotel" name="search" id="hotel_price_min2">
+                    <input type="text" placeholder="maximum price for hotel" name="search" id="hotel_price_max2">
+                    <input type="text" placeholder="currency (ex:USD)" name="search" id="hotel_currency2">
+                    <input type="text" placeholder="number of nights to live" name="search" id="hotel_nights2">
+                    <p>check in date:<input type="date" id="hotel_days2" name=""></p>
+                </div>
+
+                <div class="op1" id="op1_rest">
+                    <h3>input for restaurants</h3>
+                    <p>restaurants rating:
+                        <select id="rest_rating2">
+                            <option value="3">3 </option>
+                            <option value="4">4 </option>
+                            <option value="5">5 </option>
+                        </select>
+                    </p>
+                </div>
+
+                <button type="button" onclick="option2_anchor();" id="fsSubmitButton">Submit</button>
+                <!--<input type="button" value="hide" onclick="document.getElementById('layer').style.vi sibility='hidden';"/>-->
+            </form>
+        </div>
+    </div>
+
+    <script>
+        //this supports which option the input form will show
+        //https://stackoverflow.com/questions/15566999/how-to-show-form-input-fields-based-on-select-value
+
+        $(document).ready(function () {
+            toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
+            // this will call our toggleFields function every time the selection value of our other field changes
+            $("#slct").change(function () {
+                toggleFields();
+            });
+
+        });
+        // this toggles the visibility of other option
+        function toggleFields() {
+            if ($("#slct").val() === "two_city_flight") {
+                $("#option2").show();
+                $("#option1").hide();
+            }
+            else {
+                $("#option2").hide();
+                $("#option1").show();
+            }
+        }
+    </script>
+
+
+    <div class="resp_class">
+        <h3>airport information</h3>
+        <div class="left_airport col_f">
+            <script id="handlebars-airport" type="text/x-handlebars-template">
+                <div class="airport">
+                    <p> airport code: {{airport_code}}</p>
+                    <p> airport name: {{airport_name}}</p>
+                    <p> time zone: {{airport_time_zone_name}}</p>
+                    <p> location in the world: ({{airport_latitude}},{{airport_longitude}})</p>
+                </div>
+            </script>
+            <script id="handlebars-airport2" type="text/x-handlebars-template">
+                <div class="airport">
+                    <p> minimum price: {{min_price}}</p>
+                    <p> Direct flight(carrier, carrier id): {{direct_flight}} {{carrier}} {{CarrierIds}}</p>
+                    <p> Departure Date: {{depart_date}}</p>
+                    <p> quote date: {{QuoteDateTime}}</p>
+                </div>
+            </script>
+        </div>
+
+        <h3>hotel information</h3>
+        <div class="middle_hotel col_f">
+            <script id="handlebars-hotel" type="text/x-handlebars-template">
+                <div class="hotel">
+                    <img src="{{picture_name}}">
+                    <p> hotel name and location: {{hotel_name}}, {{hotel_location}}</p>
+                    <p> top awards: {{hotel_awards}}</p>
+                    <p> hotel ranking: {{hotel_raw_ranking}}, {{ranking_description}}</p>   <!--raw_ranking,ranking -->
+                    <p> hotel size: {{subcategory_type}}</p>   <!--subcategory_type_label-->
+                    <p> hotel price level, average price: {{hotel_price_level}}, {{hotel_average_price}}</p>   <!--price_level, price-->
+                    <p> hotel bearing: {{hotel_bearing}}</p>  <!--bearing-->
+                </div>
+            </script>
+        </div>
+
+        <h3>restaurant information</h3>
+        <div class="right_rest col_f">
+            <script id="handlebars-restaurant" type="text/x-handlebars-template">
+                <div class="rest">
+                    <img src="{{picture_name}}">
+                    <p> restaurant name and location: {{rest_name}}, {{rest_location}}</p>
+                    <p> restaurant rank and rating: {{rest_ranking}}, {{rest_rating}}</p>  
+                    <div id="rest_desp">
+                        <p> restaurant description: {{rest_descrip}}</p>
+                    </div>
+                    <p> restaurant type: {{rest_type}}</p>  
+                    <a href="{{rest_url}}">restaurant link</a>
+                </div>
+            </script>
+        </div>
+    </div>
+
+
+    <script>
+        var location_id;
+        //option 1 (form 1)
+        function option1_anchor() {
+            console.log("I am here at option1_anchor")
+            //get all values
+            getInputValueOp1();
+        }
+
+        function option2_anchor() {
+            console.log("I am here at option2_anchor");
+            getInputValueOp2();
+        }
+
+        var inputLocation;
+        var result_op1 = [];
+        var result_op2 = [];
+        //result_op1:[hotel_adults,hotel_rooms,hotel_price_min,hotel_price_max, hotel_class, hotel_currency, hotel_nights, rest_rating, min_price_rest]
+
+        function getInputValueOp1() {
+            removeElement();
+            result_op1 = [];
+            result_op2 = [];
+            // Selecting the input element and get its value 
+            inputLocation = document.getElementById("search_by_location1").value;
+
+            result_op1.push(document.getElementById("hotel_adults").value);
+            result_op1.push(document.getElementById("hotel_rooms").value);
+            result_op1.push(document.getElementById("hotel_price_min").value);
+            result_op1.push(document.getElementById("hotel_price_max").value);
+            result_op1.push(document.getElementById("hotel_currency").value);
+            result_op1.push(document.getElementById("hotel_nights").value);
+            result_op1.push(document.getElementById("hotel_days").value);
+
+            result_op1.push(document.getElementById("rest_rating").value);
+            console.log("result_op1 = ", result_op1)
+
+            getfrom_api1();
+            //for test, need to delete later
+            //location_id = "60745";
+        }
+
+        function checkUndefine(index) {
+            if ((result_op1[index] != undefined) && (result_op1[index] != null) && (result_op1[index] != "")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function checkUndefineVar(variable) {
+            if ((variable != undefined) && (variable != null) && (variable != "")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        //this function remove div element when client resubmit
+        function removeElement() {
+            //clear all div written with travel advisor api
+            while ($('.airport').length > 0) {
+                $(".airport").remove();
+            }
+
+            while ($('.hotel').length > 0) {
+                $(".hotel").remove();
+            }
+
+            while ($('.rest').length > 0) {
+                $(".rest").remove();
+            }
+        }
+
+        function getfrom_api1() {
+            var myHeaders = new Headers();
+            myHeaders.append("x-rapidapi-host", "tripadvisor1.p.rapidapi.com");
+            myHeaders.append("x-rapidapi-key", "29f17896c6msh2d2a40adb28ec38p1d53aejsn78791fc96467");
+
+            var requestOptions = {
+                method: 'GET',
+                mode: 'cors',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            airport_url = "https://tripadvisor1.p.rapidapi.com/airports/search?" + "query=" + inputLocation;
+            airport_url.replace(/ /g, "%20");
+            console.log("airport_url = ", airport_url);
+
+            fetch(airport_url, requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    data = JSON.parse(result);
+
+                    //for the entire length of json
+                    var json_length = Object.keys(data).length;
+                    console.log("json_length = ", json_length);
+
+                    var result = [];
+
+                    for (var i = 0; i < json_length; i++) {
+                        airport_code = data[i].code;
+                        airport_name = data[i].display_name;
+                        location_id = data[i].location_id;
+                        console.log("location_id = ", location_id);
+                        airport_time_zone_name = data[i].time_zone_name;
+                        airport_latitude = data[i].latitude;
+                        airport_longitude = data[i].longitude;
+
+                        writeResponse_Airport_op1(airport_code, airport_name, location_id, airport_time_zone_name, airport_latitude, airport_longitude);
+                        getfrom_api2();
+                        getfrom_api3();
+                    }
+
+                    console.log("airport_code=", airport_code);
+                })
+                .catch(error => console.log('error', error));
+        }
+
+        //write response to handlebar
+        function writeResponse_Airport_op1(airport_code, airport_name, location_id, airport_time_zone_name, airport_latitude, airport_longitude) {
+            var template = $('#handlebars-airport').html();
+            var templateScript = Handlebars.compile(template);
+            var context = { airport_code: airport_code, airport_name: airport_name, airport_time_zone_name: airport_time_zone_name, airport_latitude: airport_latitude, airport_longitude: airport_longitude }
+            var html = templateScript(context);
+            $(".left_airport").append(html);
+        }
+
+        function getfrom_api2() {
+            var myHeaders = new Headers();
+            myHeaders.append("x-rapidapi-host", "tripadvisor1.p.rapidapi.com");
+            myHeaders.append("x-rapidapi-key", "29f17896c6msh2d2a40adb28ec38p1d53aejsn78791fc96467");
+
+            var requestOptions = {
+                method: 'GET',
+                mode: 'cors',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(write_html_airport_option1(), requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    data = JSON.parse(result);
+
+                    //for the entire length of json
+                    var json_length = Object.keys(data).length;
+
+                    var result = [];
+
+                    for (var i = 0; i < json_length; i++) {
+                        picture_name = data.data[i].photo.images.small.url;
+                        hotel_name = data.data[i].name;
+                        hotel_location = data.data[i].location_string;
+                        hotel_awards = data.data[i].awards[0].award_type + ", " + data.data[i].awards[0].year + ", " + data.data[i].awards[0].display_name;
+                        hotel_raw_ranking = data.data[i].raw_ranking;
+                        ranking_description = data.data[i].ranking;
+                        subcategory_type = data.data[i].subcategory_type_label;
+                        hotel_price_level = data.data[i].price_level;
+                        hotel_average_price = data.data[i].price;
+                        hotel_bearing = data.data[i].bearing;
+
+                        writeResponse_hotel_op1(picture_name, hotel_name, hotel_location, hotel_awards, hotel_raw_ranking, ranking_description, subcategory_type, hotel_price_level, hotel_average_price, hotel_bearing);
+                    }
+                })
+                .catch(error => console.log('error', error));
+        }
+
+        function write_html_airport_option1() {
+            var result = "https://tripadvisor1.p.rapidapi.com/hotels/list?";
+            if (checkUndefine(2)) { result += "pricesmin=" + String(result_op1[2]) + "&"; }
+            if (checkUndefine(3)) { result += "pricesmax=" + String(result_op1[3]) + "&"; }
+            if (checkUndefine(4)) { result += "currency=" + String(result_op1[4]) + "&"; }
+
+            result += "limit=" + "10" + "&";
+
+            if (checkUndefine(6)) { result += "checkin=" + String(result_op1[6]) + "&"; }
+            if (checkUndefine(5)) { result += "nights=" + String(result_op1[5]) + "&"; }
+
+            if (checkUndefineVar(location_id)) { result += "location_id=" + location_id + "&"; }
+            if (checkUndefine(0)) { result += "adults=" + String(result_op1[0]) + "&"; }
+            if (checkUndefine(1)) { result += "rooms=" + String(result_op1[1]); }
+
+            //check if the last character is &  
+            if (result.charAt(result.length - 1) === "&") {
+                result = result.slice(0, result.length - 1);    //remove last &
+            }
+
+            console.log("result = ", result);
+            return result.replace(/ /g, "%20");
+        }
+
+        //write response to handlebar
+        function writeResponse_hotel_op1(picture_name, hotel_name, hotel_location, hotel_awards, hotel_raw_ranking, ranking_description, subcategory_type, hotel_price_level, hotel_average_price, hotel_bearing) {
+            var template = $('#handlebars-hotel').html();
+            var templateScript = Handlebars.compile(template);
+            var context = { picture_name: picture_name, hotel_name: hotel_name, hotel_location: hotel_location, hotel_awards: hotel_awards, hotel_raw_ranking: hotel_raw_ranking, ranking_description: ranking_description, subcategory_type: subcategory_type, hotel_price_level: hotel_price_level, hotel_average_price: hotel_average_price, hotel_bearing: hotel_bearing }
+            var html = templateScript(context);
+            $(".middle_hotel").append(html);
+        }
+
+        function getfrom_api3() {
+            var myHeaders = new Headers();
+            myHeaders.append("x-rapidapi-host", "tripadvisor1.p.rapidapi.com");
+            myHeaders.append("x-rapidapi-key", "29f17896c6msh2d2a40adb28ec38p1d53aejsn78791fc96467");
+
+            var requestOptions = {
+                method: 'GET',
+                mode: 'cors',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(write_html_rest_option1(), requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    data = JSON.parse(result);
+
+                    //for the entire length of json
+                    var json_length = Object.keys(data).length;
+
+                    var result = [];
+
+                    for (var i = 0; i < json_length; i++) {
+                        picture_name = data.data[i].photo.images.small.url;
+                        rest_name = data.data[i].name;
+                        rest_location = data.data[i].location_string;
+                        rest_rating = data.data[i].rating;
+                        rest_ranking = data.data[i].ranking;
+                        rest_descrip = data.data[i].description;
+                        rest_url = data.data[i].website;
+                        rest_type = "";
+
+                        var cusion_length = Object.keys(data.data[i].cuisine).length;
+                        if (cusion_length > 0) {
+                            for (var j = 0; j < cusion_length; j++) {
+                                rest_type = rest_type + data.data[i].cuisine[j].name;
+                            }
+                        } else {
+                            rest_type = "unknown";
+                        }
+
+                        writeResponse_rest_op1(picture_name, rest_name, rest_location, rest_rating, rest_ranking, rest_descrip, rest_url, rest_type);
+                    }
+                })
+                .catch(error => console.log('error', error));
+        }
+
+        function writeResponse_rest_op1(picture_name, rest_name, rest_location, rest_rating, rest_ranking, rest_descrip, rest_url, rest_type) {
+            var template = $('#handlebars-restaurant').html();
+            var templateScript = Handlebars.compile(template);
+            var context = { picture_name: picture_name, rest_name: rest_name, rest_location: rest_location, rest_rating: rest_rating, rest_ranking: rest_ranking, rest_descrip: rest_descrip, rest_url: rest_url, rest_type: rest_type }
+            var html = templateScript(context);
+            $(".right_rest").append(html);
+        }
+
+        function write_html_rest_option1() {
+            var result = "https://tripadvisor1.p.rapidapi.com/restaurants/list?";
+            result += "limit=" + "10" + "&";
+            if (checkUndefine(7)) { result += "min_rating=" + String(result_op1[7]) + "&"; }
+            if (checkUndefineVar(location_id)) { result += "location_id=" + location_id; }
+
+            //check if the last character is &  
+            if (result.charAt(result.length - 1) == "&") {
+                result = result.slice(0, result.length - 2);    //remove last &
+            }
+
+            console.log("write_html_rest_option1 = ", result);
+            return result.replace(/ /g, "%20");
+        }
+
+        function getLocationID(city) {
+            var myHeaders = new Headers();
+            myHeaders.append("x-rapidapi-host", "tripadvisor1.p.rapidapi.com");
+            myHeaders.append("x-rapidapi-key", "29f17896c6msh2d2a40adb28ec38p1d53aejsn78791fc96467");
+
+            var requestOptions = {
+                method: 'GET',
+                mode: 'cors',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            location_url = "https://tripadvisor1.p.rapidapi.com/locations/search?" + "limit=1&" + "query=" + city;
+            location_url.replace(/ /g, "%20");
+
+            fetch(location_url, requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    data = JSON.parse(result);
+                    location_id = data.data[0].result_object.location_id;
+                })
+                .catch(error => console.log('error', error));
+        }
+
+        function getInputValueOp2() {
+            removeElement();
+            result_op1 = [];
+            result_op2 = [];
+            // Selecting the input element and get its value 
+            inputLocation = document.getElementById("city_input2").value;
+
+            //find location id based on city name
+            getLocationID(inputLocation);
+
+            result_op2.push(document.getElementById("search_by_location2").value);
+            result_op2.push(document.getElementById("origin_place").value);
+            result_op2.push(document.getElementById("destination_place").value);
+            result_op2.push(document.getElementById("flight_date").value);
+
+
+            result_op2.push(document.getElementById("hotel_adults2").value);
+            result_op2.push(document.getElementById("hotel_rooms2").value);
+            result_op2.push(document.getElementById("hotel_price_min2").value);
+            result_op2.push(document.getElementById("hotel_price_max2").value);
+            result_op2.push(document.getElementById("hotel_currency2").value);
+            result_op2.push(document.getElementById("hotel_nights2").value);
+            result_op2.push(document.getElementById("hotel_days2").value);
+
+            result_op2.push(document.getElementById("rest_rating2").value);
+
+            getfrom_api4();
+        }
+
+
+        function getfrom_api4() {
+            var myHeaders = new Headers();
+            myHeaders.append("x-rapidapi-host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com");
+            myHeaders.append("x-rapidapi-key", "29f17896c6msh2d2a40adb28ec38p1d53aejsn78791fc96467");
+
+            var requestOptions = {
+                method: 'GET',
+                mode: 'cors',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(write_html_flight_option2(), requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    data = JSON.parse(result);
+
+                    //for the entire length of json
+                    var json_length = Object.keys(data.Quotes).length;
+
+                    var carrier_length = Object.keys(data.Carriers).length;
+                    //find carrier name using last block
+                    //dictionary format: {key=carrier_id: value=carrier_name}
+                    var carriers_list = {};
+                    for (var j = 0; j < carrier_length; j++) {
+                        id = data.Carriers[j].CarrierId;
+                        value = data.Carriers[j].Name;
+                        carriers_list[id] = value;
+                    }
+
+                    var result = [];
+                    for (var i = 0; i < json_length; i++) {
+
+                        min_price = data.Quotes[i].MinPrice;
+                        direct_flight = data.Quotes[i].Direct;
+                        CarrierIds = data.Quotes[i].CarrierIds;
+                        carrier = carriers_list[CarrierIds];
+                        depart_date = data.Quotes[i].DepartureDate;
+                        QuoteDateTime = data.Quotes[i].QuoteDateTime;
+
+                        writeResponse_flight_op2(min_price, direct_flight, CarrierIds, carrier, depart_date, QuoteDateTime);
+                    }
+                    getfrom_api2();
+                    getfrom_api3();
+                })
+                .catch(error => console.log('error', error));
+        }
+
+        function writeResponse_flight_op2(min_price, direct_flight, CarrierIds, carrier, depart_date, QuoteDateTime) {
+            var template = $('#handlebars-airport2').html();
+            var templateScript = Handlebars.compile(template);
+            var context = { min_price: min_price, direct_flight: direct_flight, CarrierIds: CarrierIds, carrier: carrier, depart_date: depart_date, QuoteDateTime: QuoteDateTime }
+            var html = templateScript(context);
+            $(".left_airport").append(html);
+        }
+
+        function checkUndefine2(index) {
+            if ((result_op2[index] != undefined) && (result_op2[index] != null) && (result_op2[index] != "")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function write_html_flight_option2() {
+            var result = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/";
+            //check if all required input is valid
+            if (checkUndefine2(0)) { result += String(result_op2[0]) + "/"; }
+            else { return "invalid input, try again"; }
+            result += "USD/";
+            result += "en-US/";
+
+            if (checkUndefine2(1)) { result += String(result_op2[1]) + "/"; }
+            else { return "invalid input, try again"; }
+            if (checkUndefine2(2)) { result += String(result_op2[2]) + "/"; }
+            else { return "invalid input, try again"; }
+            if (checkUndefine2(3)) { result += String(result_op2[3]); }
+            else { return "invalid input, try again"; }
+
+            result += "?inboundpartialdate=2020-06-01";
+
+            console.log("result = ", result);
+            return result.replace(/ /g, "%20");
+        }
+
+    </script>
+</body>
+
+
+</html>
